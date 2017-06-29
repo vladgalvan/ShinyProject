@@ -19,12 +19,25 @@ shinyServer(function(input, output) {
             
       })
       
-      output$pred1 <- renderText({if(input$ycol=='Murder'){anova(model1)$'Pr(>F)'[1]}})
-      output$pred2 <- renderText({if(input$ycol=='Assault'){anova(model2)$'Pr(>F)'[1]}})
-      output$pred3 <- renderText({if(input$ycol=='Rape'){anova(model3)$'Pr(>F)'[1]}})
+      output$pred1p <- renderText({if(input$ycol=='Murder'){anova(model1)$'Pr(>F)'[1]}})
+      output$pred2p <- renderText({if(input$ycol=='Assault'){anova(model2)$'Pr(>F)'[1]}})
+      output$pred3p <- renderText({if(input$ycol=='Rape'){anova(model3)$'Pr(>F)'[1]}})
+      
+      output$pred1slope <- renderText({if(input$ycol=='Murder'){model1[[1]][2]}})
+      output$pred2slope <- renderText({if(input$ycol=='Assault'){model2[[1]][2]}})
+      output$pred3slope <- renderText({if(input$ycol=='Rape'){model3[[1]][2]}})
+      
+      output$pred1intercept <- renderText({if(input$ycol=='Murder'){model1[[1]][1]}})
+      output$pred2intercept <- renderText({if(input$ycol=='Assault'){model2[[1]][1]}})
+      output$pred3intercept <- renderText({if(input$ycol=='Rape'){model3[[1]][1]}})
             
       output$table <- renderTable({
             head(selectedData(),10)
       })
+      
+      
+      
+      
+      
 
 })
